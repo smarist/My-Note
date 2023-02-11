@@ -35,6 +35,11 @@
     text-overflow: ellipsis;
 }
 
+.selected-note .text-snippet {
+    color: white;
+    font-weight: 700;
+}
+
 .note-summary:not(:last-of-type) {
     border-bottom: 1px solid lightgray;
 }
@@ -49,7 +54,12 @@
 }
 
 .title:hover {
-    background: grey;
+    background: #f4f6f8;
+}
+
+.title:hover .text-snippet {
+    color: black;
+    font-weight: 700;
 }
 
 .title:hover .deleteBtn {
@@ -73,9 +83,4 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.selected-note .text-snippet {
-    color: white;
-    font-weight: 700;
 }
