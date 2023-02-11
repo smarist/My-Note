@@ -13,6 +13,7 @@
     "nanoid": "^4.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
     "react-mde": "^11.5.0",
     "react-scripts": "5.0.1",
     "react-split": "^2.0.14",
@@ -43,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/showdown": "^2.0.0"
   }
 }

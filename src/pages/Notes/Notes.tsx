@@ -11,11 +11,12 @@ const AppBar: FC = () => {
     () => JSON.parse(localStorage.getItem("notes") as any) || []
   );
 
-// const [notes, setNotes] = useState<any>([]);
-
-  const [currentNoteId, setCurrentNoteId] = useState<Notes | any>(
-    (notes[0] && notes[0].id) || null
+  const [currentNoteId, setCurrentNoteId] = useState<string>(
+    (notes[0] && notes[0].id) || ""
   );
+//   const [currentNoteId, setCurrentNoteId] = useState<any>(
+//     (notes[0] && notes[0].id) || null
+//   );
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
@@ -46,15 +47,15 @@ const AppBar: FC = () => {
     });
   }
 
-  function deleteNote(event: React.ChangeEvent<HTMLInputElement>, noteId: string) {
-    event.stopPropagation();
+  function deleteNote(e: React.MouseEvent<HTMLElement>, noteId: string) {
+    e.stopPropagation();
     setNotes((oldNotes) => oldNotes.filter((note: Notes) => note.id !== noteId));
   }
 
   function findCurrentNote() {
     return (
       notes.find((note: Notes) => {
-        return note.id as unknown === currentNoteId;
+        return note.id === currentNoteId;
       }) || notes[0]
     );
   }
@@ -62,25 +63,25 @@ const AppBar: FC = () => {
   return (
     <main>
       {notes.length > 0 ? (
-        <Split sizes={[30, 70]} direction="horizontal" className="split">
+        <Split sizes={[30, 70]} direction="horizontal" className={classes["split"]}>
           <Sidebar
-            // notes={notes}
-            // currentNote={findCurrentNote()}
-            // setCurrentNoteId={setCurrentNoteId}
-            // newNote={createNewNote}
-            //deleteNote={deleteNote}
+            notes={notes}
+            currentNote={findCurrentNote().id}
+            setCurrentNoteId={setCurrentNoteId}
+            newNote={createNewNote}
+            deleteNote={deleteNote}
           />
           {currentNoteId && notes.length > 0 && (
             <Editor 
-            // currentNote={findCurrentNote()}
-             // updateNote={updateNote}
+              currentNote={findCurrentNote().body}
+              updateNote={updateNote}
               />
           )}
         </Split>
       ) : (
-        <div className="no-notes">
+        <div className={classes["no-notes"]}>
           <h1>You have no notes</h1>
-          <button className="first-note" onClick={createNewNote}>
+          <button className={classes["first-note"]} onClick={createNewNote}>
             Create one now
           </button>
         </div>

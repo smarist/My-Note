@@ -14,3 +14,7 @@ export type Notes = {
   oldNotes?: Notes,
   [key: string]: any
 }
+export type MyCodeParams = {
+  param1: Notes
+  toggleFunction: (param: any) => void
+}
